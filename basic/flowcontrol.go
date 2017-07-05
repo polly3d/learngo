@@ -3,6 +3,8 @@ package basic
 import (
 	"fmt"
 	"math"
+	"runtime"
+	"time"
 )
 
 // RunFlowControl is flow control
@@ -13,6 +15,10 @@ func RunFlowControl() {
 	normalIf(-10)
 	normalIf(10)
 	newton(2)
+	normalSwitch()
+	switchNoCondition()
+	normalDefer()
+	forDefer()
 }
 
 func normalFor() {
@@ -51,4 +57,42 @@ func newton(x float64) float64 {
 	}
 	fmt.Println(z)
 	return z
+}
+
+func normalSwitch() {
+	switch os := runtime.GOOS; os {
+	case "darwin":
+		fmt.Println("OS X")
+	case "linux":
+		fmt.Println("linux")
+	default:
+		fmt.Printf("%s.\n", os)
+	}
+}
+
+func switchNoCondition() {
+	t := time.Now()
+	switch {
+	case t.Hour() < 12:
+		fmt.Println("Good morning!")
+	case t.Hour() < 17:
+		fmt.Println("Good afternoog!")
+	default:
+		fmt.Println("Good evening!")
+
+	}
+}
+
+func normalDefer() {
+	defer fmt.Println("world !")
+
+	fmt.Print("hello ")
+}
+
+func forDefer() {
+	fmt.Println("start loop...")
+	for i := 0; i < 10; i++ {
+		defer fmt.Println(i)
+	}
+	fmt.Println("end loop")
 }
