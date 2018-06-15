@@ -1,9 +1,12 @@
 package array
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestFindMin(t *testing.T) {
 	arr1 := []int{5, 4, 3, 2, 1}
+	arr1 = Random(arr1)
 	expected := 1
 	actual := FindMin(arr1)
 	if actual != expected {
@@ -13,6 +16,7 @@ func TestFindMin(t *testing.T) {
 
 func TestFindMin2(t *testing.T) {
 	arr1 := []int{5, 4, 3, 2, 1}
+	arr1 = Random(arr1)
 	expected := 1
 	actual := FindMin2(arr1)
 	if actual != expected {
